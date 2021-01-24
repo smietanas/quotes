@@ -1,0 +1,32 @@
+<!--Nav-->
+<app-navbar title="Najlepsze cytaty"></app-navbar>
+<!-- Nav -->
+<div class="container q-container">
+  <!--Dodawanie cytatu-->
+  <app-button
+    customCLasses="btn-floating teal add-button"
+    (clickButton)="form.onSwitchForm()"
+  >
+    <i class="material-icons">add</i>
+  </app-button>
+  <app-form #form (newQuotation)="onNewQuotation($event)"></app-form>
+  <!-- Koniec dodawania cytatu -->
+
+  <div class="row">
+    <!-- Lista cytatów -->
+    <div class="col s8">
+      <!-- Koniec lista cytatów -->
+      <app-list
+        [quotes]="quotes"
+        (vote)="addVote($event.quotation, $event.value)"
+      ></app-list>
+    </div>
+    <!-- Sekcja rankigów -->
+    <div class="col s4">
+      <!-- <app-ranking [quotes]="quotes"></app-ranking> -->
+      <app-ranking [quotes]="bestQuotes()" title="Najlepsze"></app-ranking>
+      <app-ranking [quotes]="worstQuotes()" title="Najgorsze"></app-ranking>
+    </div>
+    <!-- Sekcja rankigów -->
+  </div>
+</div>
